@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
 import ThemeProvider from './ThemeProvider';
 
@@ -10,9 +11,11 @@ const Providers = (props: ProvidersProps) => {
   const { children } = props;
 
   return (
-    <ThemeProvider>
-      {children}
-    </ThemeProvider>
+    <BrowserRouter>
+      <ThemeProvider>
+        {children}
+      </ThemeProvider>
+    </BrowserRouter>
   );
 };
 

@@ -1,9 +1,10 @@
 import Providers from 'providers';
+import Main from 'pages/Main';
 
 const App = () => {
   return (
     <Providers>
-      TODO
+      <Main />
     </Providers>
   );
 }
