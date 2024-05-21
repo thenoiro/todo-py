@@ -1,6 +1,8 @@
 import { ReactNode } from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider as StoreProvider } from 'react-redux';
 
+import store from 'store';
 import ThemeProvider from './ThemeProvider';
 
 type ProvidersProps = {
@@ -11,11 +13,13 @@ const Providers = (props: ProvidersProps) => {
   const { children } = props;
 
   return (
-    <BrowserRouter>
-      <ThemeProvider>
-        {children}
-      </ThemeProvider>
-    </BrowserRouter>
+    <StoreProvider store={store}>
+      <BrowserRouter>
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
+      </BrowserRouter>
+    </StoreProvider>
   );
 };
 
