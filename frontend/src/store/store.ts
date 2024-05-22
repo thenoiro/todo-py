@@ -12,7 +12,7 @@ const store = configureStore({
 });
 
 export const {
-  useTestQuery,
+  useSignUpMutation,
 } = api
 
 export default store;

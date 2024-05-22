@@ -1,10 +1,28 @@
-import { Box } from '@mui/material';
+import { SyntheticEvent, useCallback } from 'react';
+import { Box, Button, Stack, TextField } from '@mui/material';
 
-import { useTestQuery } from 'store';
+import { useSignUpMutation } from 'store';
 
 const Main = () => {
-  const testQuery = useTestQuery();
-  console.log(testQuery);
+  const [signup] = useSignUpMutation();
+
+  const handleSubmit = useCallback(async (e: SyntheticEvent) => {
+    e.preventDefault();
+    const target = e.target as typeof e.target & {
+      username: { value: string };
+      password: { value: string };
+    };
+    const body = {
+      username: target.username.value,
+      password: target.password.value,
+    };
+    try {
+      const result = await signup({ body }).unwrap();
+      console.log(result);
+    } catch (ex) {
+      console.error(ex)
+    }
+  }, [signup]);
 
   return (
     <Box
@@ -16,7 +34,29 @@ const Main = () => {
       maxHeight="100dvh"
       overflow="auto"
     >
-      Main
+      <Box component="form" maxWidth={500} onSubmit={handleSubmit}>
+        <Stack spacing={4}>
+          <TextField
+            required
+            size="small"
+            name="username"
+            label="Username"
+          />
+          <TextField
+            required
+            size="small"
+            type="password"
+            name="password"
+            label="Password"
+          />
+          <Button
+            type="submit"
+            variant="contained"
+          >
+            Submit
+          </Button>
+        </Stack>
+      </Box>
     </Box>
   );
 };
