@@ -1,12 +1,12 @@
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import (
-  DeclarativeBase,
   Mapped,
   String,
   List,
   mapped_column,
   relationship,
 )
+from app.database import Base
 
 
 tables = {
@@ -17,10 +17,6 @@ schemas = {
     'Users': 'Users',
     'Todos': 'Todos',
 }
-
-
-class Base(DeclarativeBase):
-    pass
 
 
 class Users(Base):

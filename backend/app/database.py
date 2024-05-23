@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
+from sqlalchemy.orm import DeclarativeBase
 
 dotenv_path = Path(__file__).parent.parent.absolute() / '.env'
 load_dotenv(dotenv_path)
@@ -16,3 +17,6 @@ SECRENT = os.getenv('SECRET')
 DB_URL = f'postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
 
 engine = create_engine(DB_URL)
+
+class Base(DeclarativeBase):
+    pass
