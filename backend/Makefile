@@ -8,7 +8,7 @@ venv:
 	$(ACTIVATE) && pip install -r requirements.txt
 
 run:
-	$(ACTIVATE) && uvicorn main:app --reload --port 3141
+	$(ACTIVATE) && uvicorn app.api:app --reload --port 3141
 
 clear:
 	rm -rf $(VENV)
